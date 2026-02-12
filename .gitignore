@@ -1,0 +1,7 @@
+
+# Python cache & local data
+__pycache__/
+src/cli/data.json
+
+.DS_Store
+test_export_results.txt

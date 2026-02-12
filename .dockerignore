@@ -1,0 +1,42 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+# Conda environment (but NOT requirements files)
+env/environment.yml
+venv/
+.venv
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Documentation
+docs/
+examples/
+README.md
+LICENSE.md
+
+# Testing
+test/
+tests/
+.pytest_cache/
+
+# Docker
+docker/
+.dockerignore
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,26 @@
+stages:
+  - test
+
+unit_tests:
+  stage: test
+  image: python:3.11-slim
+  before_script:
+    - python --version
+    - pip install --upgrade pip
+    - pip install -r env/requirements.txt
+    # IMPORTANT: expose project root, not src/
+    - export PYTHONPATH="$CI_PROJECT_DIR"
+  script:
+    # (Optional but useful sanity checks — can remove later)
+    - python -c "import importlib.util; spec = importlib.util.find_spec('src.timeline.core'); print('SPEC:', spec); print('ORIGIN:', getattr(spec, 'origin', None))"
+    - python -c "import src.timeline.core as m; print('MODULE:', m); print('__file__:', getattr(m,'__file__',None))"
+
+    # ACTUAL TEST RUN
+    - pytest -q --disable-warnings --maxfail=1 --junitxml=report.xml
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
+    paths:
+      - report.xml
+    expire_in: 7 days
